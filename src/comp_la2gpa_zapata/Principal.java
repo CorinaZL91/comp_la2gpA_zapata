@@ -1,20 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package comp_la2gpa_zapata;
 
-/**
- *
- * @author corin
- */
+import comp_la2gpa_zapata.procesos.Archivos;
+import comp_la2gpa_zapata.ventanas.Ventana;
+
+
 public class Principal {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //Archivos a = new Archivos();
+        //String contenido = Archivos.abrirArchivo("C:\\Users\\corin\\Documents\\ITZ\\gestionar utilizando herramientas y.txt");
+        //System.out.println(contenido);
+        Ventana v = new Ventana ();
+        v.setVisible(true);
+       
     }
     
 }
