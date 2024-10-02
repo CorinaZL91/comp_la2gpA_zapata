@@ -6,6 +6,7 @@ package comp_la2gpa_zapata.ventanas;
 
 import comp_la2gpa_zapata.procesos.Archivos;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JTextArea;
 
 /**
@@ -13,8 +14,6 @@ import javax.swing.JTextArea;
  * @author corin
  */
 public class Ventana extends javax.swing.JFrame {
-
-
 
     /**
      * Creates new form Ventana
@@ -30,7 +29,6 @@ public class Ventana extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
-  
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -74,7 +72,7 @@ public class Ventana extends javax.swing.JFrame {
 
         jMenu3.setText("Procesos");
 
-        mnuSumar.setText("Sumar");
+        mnuSumar.setText("Identifica Lexemas");
         mnuSumar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuSumarActionPerformed(evt);
@@ -119,16 +117,23 @@ public class Ventana extends javax.swing.JFrame {
 
    
     private void mnuAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAbrirActionPerformed
-         File f = Archivos.getArchivo(this);
+        File f = Archivos.getArchivo(this);
         String nomArchivo = f.getAbsolutePath();
+        //"C:\\Users\\corin\\Documents\\ITZ\\Lenguajes y Autómatas II\\prueba.txt"
         String contenido = Archivos.getContenido(nomArchivo);
         txtContenido.setText(contenido);
     }//GEN-LAST:event_mnuAbrirActionPerformed
 
+    
+                                            
+   
+
     private void mnuSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSumarActionPerformed
-        // TODO add your handling code here:
-        Archivos.sumar(this);
-        
+     String datos = txtContenido.getText(); // Obtén el texto de txtContenido
+    ArrayList<String> listaElementos = Archivos.separaLexemas(datos); // Separa los elementos
+
+    // Llama al método asociaList con la instancia actual de Ventana y la lista de elementos
+    Archivos.asociaList(this, listaElementos); 
     }//GEN-LAST:event_mnuSumarActionPerformed
 
     /**

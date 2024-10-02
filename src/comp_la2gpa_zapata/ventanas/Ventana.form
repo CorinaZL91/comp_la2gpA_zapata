@@ -35,7 +35,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mnuSumar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sumar"/>
+                <Property name="text" type="java.lang.String" value="Identifica Lexemas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuSumarActionPerformed"/>
