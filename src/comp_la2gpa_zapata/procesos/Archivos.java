@@ -66,6 +66,89 @@ public class Archivos {
         return lista;
     }
 
+    private static HashMap mapaLexemas;
+
+    private static void llenaLexemas() {
+
+        mapaLexemas = new HashMap<String, Integer>();
+        mapaLexemas.put("<", 1);
+        mapaLexemas.put("<=", 2);
+        mapaLexemas.put(">", 3);
+        mapaLexemas.put(">=", 4);
+        mapaLexemas.put("==", 5);
+        mapaLexemas.put("!=", 6);
+        mapaLexemas.put("||", 7);
+        mapaLexemas.put("&&", 8);
+        mapaLexemas.put("+", 9);
+        mapaLexemas.put("-", 10);
+        mapaLexemas.put("*", 11);
+        mapaLexemas.put("/", 12);
+        mapaLexemas.put("(", 13);
+        mapaLexemas.put(")", 14);
+        mapaLexemas.put(",", 15);
+        mapaLexemas.put(";", 16);
+        mapaLexemas.put(".", 17);
+        mapaLexemas.put("Identificador", 100);
+        mapaLexemas.put("Número", 200);
+    }
+
+    public static int getIDLex(String s) {
+        llenaLexemas();
+        if (s.matches("[a-zA-Z]\\w*")) {
+            return 100;
+        } else if (s.matches("\\d+")) {
+            return 200;
+        } else if (mapaLexemas.containsKey(s) && mapaLexemas.get(s) instanceof Integer) {
+            return (Integer) mapaLexemas.get(s);
+        }
+        return -1;
+    }
+
+    public static void asociaList(Ventana v, ArrayList<String> lista) {
+        ArrayList<Lexema> lexemas = new ArrayList<>();
+
+        llenaLexemas();
+
+        for (String elemento : lista) {
+            int token = getIDLex(elemento);
+            String grupo = "";
+
+            if (token == 100) {
+                grupo = "Identificador";
+            } else if (token == 200) {
+                grupo = "Número";
+            } else if (token >= 1 && token <= 8) {
+                grupo = "Operador Lógico";
+            } else if (token >= 9 && token <= 12) {
+                grupo = "Operador Aritmético";
+            } else if (token == 13 || token == 14) {
+                grupo = "Agrupador";
+            } else if (token >= 15 && token <= 17) {
+                grupo = " Separador";
+            } else {
+                continue;
+            }
+
+            Lexema lexema = new Lexema(token, elemento, token, grupo);
+            lexemas.add(lexema);
+        }
+
+        StringBuilder resultado = new StringBuilder();
+         for (Lexema lexema : lexemas) {
+            resultado.append(lexema.toString()).append("\n");
+        }
+
+        v.getTxtSalida().setText(resultado.toString());
+    }
+     
+    
+
+    
+
+}
+    
+    
+   /**
    public static void asociaList(Ventana v, ArrayList<String> lista){
     // Crear un StringBuilder para almacenar el resultado
     StringBuilder resultado = new StringBuilder();
@@ -121,8 +204,10 @@ public class Archivos {
     }
     v.getTxtSalida().setText(resultado.toString());
 }
+   
+   
 }
-/**
+
  * public static void identificaLexemas(Ventana v, ArrayList<String> lista) {
  * StringBuilder resultado = new StringBuilder();
  *
