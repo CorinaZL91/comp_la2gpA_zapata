@@ -34,8 +34,8 @@ public class Lexema {
         return valor;
     }
     
-     public int get() {
-        return valor;
+     public String getGrupo() {
+        return grupo;
     }
 
     @Override

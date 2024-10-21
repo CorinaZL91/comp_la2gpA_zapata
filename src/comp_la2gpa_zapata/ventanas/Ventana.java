@@ -5,6 +5,8 @@
 package comp_la2gpa_zapata.ventanas;
 
 import comp_la2gpa_zapata.procesos.Archivos;
+import comp_la2gpa_zapata.procesos.Lexema;
+import comp_la2gpa_zapata.procesos.Triplo;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
@@ -145,6 +147,13 @@ public class Ventana extends javax.swing.JFrame {
 
     private void TriplosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TriplosActionPerformed
         // TODO add your handling code here:
+        String expresion = txtContenido.getText(); // Suponiendo que tienes un campo de entrada llamado TxtEntrada
+
+        // Separar los lexemas usando el método existente
+        ArrayList<String> listaLexemas = Archivos.separaLexemas(expresion);
+
+        // Llamar al método triplos para procesar la expresión y mostrar el resultado en txtSalida
+        Archivos.triplos(this, listaLexemas);
     }//GEN-LAST:event_TriplosActionPerformed
 
     /**
@@ -173,4 +182,5 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextArea txtContenido;
     private javax.swing.JTextArea txtSalida;
     // End of variables declaration//GEN-END:variables
+
 }
